@@ -2,18 +2,46 @@
 <html>
 <head>
   <title>My Satta Site</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #111;
+      color: #fff;
+    }
+    h1 {
+      color: yellow;
+    }
+    .box {
+      border: 2px solid red;
+      padding: 20px;
+      margin: 20px auto;
+      width: 200px;
+      font-size: 30px;
+      background: #000;
+    }
+  </style>
 </head>
 <body>
 
-<h1>🔥 Today Result</h1>
-<h2 id="result">Loading...</h2>
+<h1>🔥 TODAY RESULT 🔥</h1>
+
+<div class="box" id="result">Loading...</div>
 
 <script>
-fetch('data.json')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('result').innerText = data.result;
-  });
+function loadData() {
+  fetch('data.json?t=' + new Date().getTime())
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('result').innerText = data.result;
+    });
+}
+
+// first load
+loadData();
+
+// auto refresh every 5 sec
+setInterval(loadData, 5000);
 </script>
 
 </body>
