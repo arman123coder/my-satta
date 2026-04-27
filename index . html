@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Satta Site</title>
+</head>
+<body>
+
+<h1>🔥 Today Result</h1>
+<h2 id="result">Loading...</h2>
+
+<script>
+fetch('data.json')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('result').innerText = data.result;
+  });
+</script>
+
+</body>
+</html>
